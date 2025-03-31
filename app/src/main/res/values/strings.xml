@@ -23,17 +23,23 @@
     <string name="registerAccount_button">Crear Cuenta</string>
     <string name="toast_welcome">Bienvenido</string>
     <string name="toast_error">Correo o Contraseña incorrectos</string>
-    <string name="validation_email">Formato de correo inválido</string>
+    <string name="validation_email">El correo no es válido</string>
     <string name="validation_password">La contraseña debe tener al menos 4 caracteres</string>
     <string name="new_report_title">Nuevo Reporte</string>
     <string name="name_report_label">Nombre Reporte</string>
     <string name="name_report_error">El nombre del reporte no puede estar vacío</string>
-    <string name="category_label">Ingrese la categoría</string>
+    <string name="category_label">categoría</string>
     <string name="description_label">Descripción</string>
     <string name="ubication_label">Ubicación</string>
     <string name="upload_file">Subir Archivo</string>
     <string name="upload_file_description">Archivo seleccionado</string>
     <string name="publish_button">Publicar</string>
+    <string name="continue_button">Continuar</string>
+    <string name="details_report_title">Detalles Del Reporte</string>
+    <string name="details_report_validation">El nombre del reporte no puede estar vacio</string>
+    <string name="file_selection_label">Seleccionar Archivo</string>
+
+
 </resources>
 
 

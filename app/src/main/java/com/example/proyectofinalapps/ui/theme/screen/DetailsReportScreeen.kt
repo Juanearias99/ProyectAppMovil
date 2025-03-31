@@ -31,10 +31,12 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.proyectofinalapps.R
 import com.example.proyectofinalapps.ui.theme.components.TextFieldForm
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -56,15 +58,15 @@ fun DetailsReportScreeen() {
         horizontalAlignment = CenterHorizontally
     ) {
 
-        Text(text = "DETALLES DEL REPORTE", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Text(text = stringResource(id = R.string.details_report_title), fontSize = 20.sp, fontWeight = FontWeight.Bold)
 
         Spacer(modifier = Modifier.height(16.dp))
 
         TextFieldForm(
             value = nameReport,
             onValueChange = { nameReport = it },
-            supportingText = "El nombre del reporte no puede estar vacio",
-            label = "Nombre Reporte",
+            supportingText = stringResource(id = R.string.details_report_validation),
+            label = stringResource(id = R.string.name_report_label),
             onValidate = { nameReport.isBlank() },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier.fillMaxWidth(0.8f)
@@ -75,22 +77,22 @@ fun DetailsReportScreeen() {
         ExposedDropdownMenuBox(
             expanded = expandedCategory,
             onExpandedChange = { expandedCategory = !expandedCategory },
-            modifier = Modifier.fillMaxWidth(0.8f) // Asegura que tenga el mismo ancho
+            modifier = Modifier.fillMaxWidth(0.8f)
         ) {
             OutlinedTextField(
                 modifier = Modifier
                     .menuAnchor()
-                    .fillMaxWidth(), // Hace que el campo ocupe todo el ancho
+                    .fillMaxWidth(),
                 value = category,
                 onValueChange = {},
                 readOnly = true,
-                placeholder = { Text(text = "Ingrese la categoría") },
+                placeholder = { Text(text = stringResource(id = R.string.category_label)) },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedCategory) }
             )
             ExposedDropdownMenu(
                 expanded = expandedCategory,
                 onDismissRequest = { expandedCategory = false },
-                modifier = Modifier.fillMaxWidth(0.8f) // Asegura que el menú desplegable también sea ancho
+                modifier = Modifier.fillMaxWidth(0.8f)
             ) {
                 categories.forEach { item ->
                     DropdownMenuItem(
@@ -99,7 +101,7 @@ fun DetailsReportScreeen() {
                             category = item
                             expandedCategory = false
                         },
-                        modifier = Modifier.fillMaxWidth(0.8f) // Asegura que cada opción sea del mismo ancho
+                        modifier = Modifier.fillMaxWidth(0.8f)
                     )
                 }
             }
@@ -112,7 +114,7 @@ fun DetailsReportScreeen() {
         OutlinedTextField(
             value = description,
             onValueChange = { description = it },
-            label = { Text("Descripcion") },
+            label = { Text(stringResource(id = R.string.description_label)) },
             modifier = Modifier.fillMaxWidth(0.8f)
 
         )
@@ -122,7 +124,7 @@ fun DetailsReportScreeen() {
         OutlinedTextField(
             value = ubication,
             onValueChange = { ubication = it },
-            label = { Text("Ubicacion") },
+            label = { Text(stringResource(id = R.string.ubication_label)) },
             modifier = Modifier.fillMaxWidth(0.8f)
 
         )

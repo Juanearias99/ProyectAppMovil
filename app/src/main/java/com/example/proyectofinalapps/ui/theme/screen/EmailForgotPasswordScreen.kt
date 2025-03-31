@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.PersonSearch
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -28,11 +27,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.proyectofinalapps.R
 
 @Composable
 fun EmailForgotPasswordScreen() {
@@ -49,7 +50,7 @@ fun EmailForgotPasswordScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        Text(text = "Ingresa tu correo", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+        Text(text = stringResource(id = R.string.emailLabel), fontSize = 20.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
@@ -58,13 +59,13 @@ fun EmailForgotPasswordScreen() {
             isError = errorEmail,
             supportingText = {
                 if (errorEmail) {
-                    Text(text = "El correo no es valido")
+                    Text(text = stringResource(id = R.string.validation_email))
                 }
             },
             modifier = Modifier.fillMaxWidth(0.8f),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             label = {
-                Text(text = "Ingrese el Correo")
+                Text(text = stringResource(id = R.string.email_label))
             },
             onValueChange = {
                 email = it
@@ -75,11 +76,11 @@ fun EmailForgotPasswordScreen() {
         Button(
             onClick = {
                 if (email == "sophia.cuba14@gmail.com") {
-                    Toast.makeText(context, "Bienvenido(a)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.toast_welcome), Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(
                         context,
-                        "Correo incorrecto", Toast.LENGTH_SHORT).show()
+                        context.getString(R.string.validationEmail), Toast.LENGTH_SHORT).show()
                 }
 
             },
@@ -94,7 +95,7 @@ fun EmailForgotPasswordScreen() {
                 contentDescription = "Icono de Buscar Correo"
             )
             Text(
-                text = "Continuar",
+                text = stringResource(id = R.string.continue_button),
                 color = Color.White,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()

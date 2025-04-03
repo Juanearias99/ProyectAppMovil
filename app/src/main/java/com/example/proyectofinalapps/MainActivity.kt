@@ -6,8 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.proyectofinalapps.ui.theme.AlertasAppTheme
 import com.example.proyectofinalapps.ui.theme.navigation.Navigation
+import com.example.proyectofinalapps.ui.theme.screen.HomeUser
 import com.example.proyectofinalapps.ui.theme.screens.DetailsReportScreeen
 import com.example.proyectofinalapps.ui.theme.screens.EmailForgotPasswordScreen
+import com.example.proyectofinalapps.ui.theme.screens.LoginScreen
 import com.example.proyectofinalapps.ui.theme.screens.NewReportScreen
 import com.example.proyectofinalapps.ui.theme.screens.SelectFileScreen
 
@@ -17,13 +19,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AlertasAppTheme {
-          SelectFileScreen()
 
-            // DetailsReportScreeen()
-
-            // EmailForgotPasswordScreen()
-            //NewReportScreen()
                 //Navigation()
+
+                //DetailsReportScreeen()
+                //RegisterScreen()
+                //ForgotPasswordScreen()
+                //EmailForgotPasswordScreen()
+                //NewReportScreen()
+                //ResetPassword()
+                //ConfarmationCode()
+                //VerificationDelete()
+                //MenuNotifications()
+                //Profile()
+                //Comentarios()
+                //Historial()
+                //PendientesVerificacion()
+                //Rechazo()
+                //Reportes()
+                //Notification()
+                HomeUser(navigateToProfile = {}, navigateToNotification = {}, navigateToNewReport = {},
+                    navigateToDetailsReport = {})
+
+                //HomeAdmin()
             }
         }
     }

@@ -1,6 +1,6 @@
-package com.example.proyectofinalapps.ui.theme.screens
+package com.example.proyectofinalapps.ui.theme.screen
 
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,58 +8,38 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Image
 import androidx.compose.material.icons.rounded.Image
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.proyectofinalapps.R
-import com.example.proyectofinalapps.ui.theme.components.TextFieldForm
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsReportScreeen() {
-    var nameReport by remember { mutableStateOf("") }
-    var category by remember { mutableStateOf("") }
-    val categories = listOf("Rojo", "Amarillo", "Verde", "Morado")
-    var expandedCategory by remember { mutableStateOf(false) }
-    var description by remember { mutableStateOf("") }
-    var ubication by remember { mutableStateOf("") }
-    val context = LocalContext.current
+fun HomeUser(
+    navigateToProfile: () -> Unit, navigateToNotification: () -> Unit,
+    navigateToNewReport: () -> Unit, navigateToDetailsReport: () -> Unit
+) {
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         Text(
@@ -89,7 +69,8 @@ fun DetailsReportScreeen() {
             )
             Text(
                 text = "Perfil",
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable { navigateToProfile() }
             )
         }
 
@@ -113,11 +94,13 @@ fun DetailsReportScreeen() {
             )
             Text(
                 text = "Notificaciones",
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable { navigateToNotification() }
             )
         }
-
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(
+            modifier = Modifier.height(20.dp)
+        )
         Button(
             onClick = { },
             colors = ButtonDefaults.buttonColors(
@@ -129,7 +112,7 @@ fun DetailsReportScreeen() {
                 .height(45.dp),
             shape = RoundedCornerShape(8.dp),
 
-        ) {
+            ) {
 
             Icon(
                 imageVector = Icons.Rounded.Person,
@@ -138,7 +121,8 @@ fun DetailsReportScreeen() {
 
             Text(
                 text = "Creacion de reportes",
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable { navigateToNewReport() }
             )
         }
 
@@ -166,14 +150,11 @@ fun DetailsReportScreeen() {
 
             Text(
                 text = "Detalles de reportes",
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable { navigateToDetailsReport() }
             )
         }
 
-
     }
+
 }
-
-
-
-

@@ -1,4 +1,4 @@
-package com.example.proyectofinalapps.ui.theme.screens
+package com.example.proyectofinalapps.ui.theme.screen
 
 import android.util.Patterns
 import android.widget.Toast
@@ -22,6 +22,7 @@ import androidx.compose.material.icons.rounded.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -47,17 +48,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.proyectofinalapps.R
-import com.example.proyectofinalapps.ui.theme.components.TextFieldForm
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(navigateToRegister: () -> Unit, navigateToForgotPasswordScreen: () -> Unit,
-                navigateToHomeUser: () -> Unit) {
-
-    var email by rememberSaveable { mutableStateOf("") }
-    var errorEmail by rememberSaveable { mutableStateOf(false) }
+fun ResetPassword(){
+    var passwordConfirmation by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     var errorPassword by rememberSaveable { mutableStateOf(false) }
     var visibilityPassword by remember { mutableStateOf(false) }
+    var visibilityPasswordConfirmation by remember { mutableStateOf(false) }
 
     var context = LocalContext.current
     Scaffold { padding ->
@@ -69,33 +68,13 @@ fun LoginScreen(navigateToRegister: () -> Unit, navigateToForgotPasswordScreen: 
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = stringResource(id = R.string.login_title))
 
-            Spacer(modifier = Modifier.height(16.dp))
-            OutlinedTextField(
-                value = email,
-                singleLine = true,
-                isError = errorEmail,
-                supportingText = {
-                    if (errorEmail) {
-                        Text(text = stringResource(R.string.validationEmail))
-                    }
-                },
-                modifier = Modifier.fillMaxWidth(0.8f),
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                label = {
-                    Text(text = stringResource(id = R.string.emailLabel))
-                },
-                onValueChange = {
-                    email = it
-                    errorEmail = !Patterns.EMAIL_ADDRESS.matcher(email).matches()
-                }
-            )
+            Text(text = stringResource(id = R.string.ResetPasswordTitle))
 
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text(text = stringResource(id = R.string.passwordLabel)) },
+                label = { Text(text = stringResource(id = R.string.ResetPassword)) },
                 singleLine = true,
                 isError = errorPassword,
                 visualTransformation = if (visibilityPassword) VisualTransformation.None else PasswordVisualTransformation(),
@@ -116,25 +95,40 @@ fun LoginScreen(navigateToRegister: () -> Unit, navigateToForgotPasswordScreen: 
                 }
             )
 
+            OutlinedTextField(
+                value = passwordConfirmation,
+                onValueChange = { passwordConfirmation = it },
+                label = { Text(text = stringResource(id = R.string.ResetPasswordConfirmation)) },
+                singleLine = true,
+                isError = errorPassword,
+                visualTransformation = if (visibilityPasswordConfirmation) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                trailingIcon = {
+                    val image =
+                        if (visibilityPasswordConfirmation) Icons.Rounded.Visibility else Icons.Rounded.VisibilityOff
+                    IconButton(onClick = { visibilityPasswordConfirmation = !visibilityPasswordConfirmation }) {
+                        Icon(imageVector = image, contentDescription = stringResource(id = R.string.show_password))
+                    }
+                },
+                modifier = Modifier.fillMaxWidth(0.8f),
+                supportingText = {
+                    if (errorPassword) {
+                        errorPassword = passwordConfirmation.length < 4
+                        Text(text = stringResource(id = R.string.validationPassword))
+                    }
+                }
+            )
+
             Spacer(modifier = Modifier.height(10.dp))
 
-            Row {
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = stringResource(id = R.string.validationForgotPassword),
-                    color = Color(0xFF007AFF),
-                    fontSize = 14.sp,
-                    modifier = Modifier.clickable { navigateToForgotPasswordScreen() }
-                )
-            }
 
             Button(
                 onClick = {
-                    if (email == "sophia.cuba14@gmail.com" && password == "1234") {
+                    if (passwordConfirmation ==  password) {
                         Toast.makeText(context, context.getString(R.string.login_success), Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(
-                            context, context.getString(R.string.login_error),
+                            context, context.getString(R.string.ConfirmationButtonError),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -145,45 +139,15 @@ fun LoginScreen(navigateToRegister: () -> Unit, navigateToForgotPasswordScreen: 
                 shape = RectangleShape,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1976D2))
             ) {
-                Icon(
-                    imageVector = Icons.Rounded.Person,
-                    contentDescription = "Icono de usuario"
-                )
                 Text(
-                    text = stringResource(id = R.string.login_button),
+                    text = stringResource(id = R.string.ConfirmationButton),
                     color = Color.White,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.clickable { navigateToHomeUser() }
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.fillMaxWidth(0.8f)
-            ) {
-                Divider(modifier = Modifier.weight(1f), color = Color.Gray, thickness = 1.dp)
-                Canvas(modifier = Modifier.size(8.dp)) {
-                    drawCircle(color = Color.Gray)
-                }
-                Divider(modifier = Modifier.weight(1f), color = Color.Gray, thickness = 1.dp)
-            }
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Spacer(modifier = Modifier.height(35.dp))
-
-            Row {
-                Text(text = stringResource(id = R.string.register_prompt), color = Color.Gray)
-                Spacer(modifier = Modifier.width(4.dp))
-                Text(
-                    text = stringResource(id = R.string.register_button),
-                    color = Color(0xFF007AFF),
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.clickable { navigateToRegister() }
-                )
-            }
         }
     }
 }

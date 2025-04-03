@@ -38,8 +38,26 @@
     <string name="details_report_title">Detalles Del Reporte</string>
     <string name="details_report_validation">El nombre del reporte no puede estar vacio</string>
     <string name="file_selection_label">Seleccionar Archivo</string>
-
-
+    <string name="ResetPassword">Dijite la contraseña nueva</string>
+    <string name="ResetPasswordConfirmation">Confirmacion de la contraseña nueva</string>
+    <string name="ConfirmationButton">Confirmar</string>
+    <string name="ConfirmationButtonError">Alguna contraseña no coinciden</string>
+    <string name="ResetPasswordTitle">Restablecer Contraseña</string>
+    <string name="ConfirmationCodeTitle">Codigo de verificacion</string>
+    <string name="messageCode">No recibiste el codigo?</string>">
+    <string name="messageCodeSend">Enviar de nuevo</string>
+    <string name="ConfirmationButtonCode">Confirmar</string>
+    <string name="DescriptionCode">Confirmar el codigo de seguridad recibido en su correo registrado</string>
+    <string name="CodeError">Codigo incorrecto</string>
+    <string name="CodeDeposit">Ingresa el codigo enviado</string>
+    <string name="CodeValidation">Verificado</string>
+    <string name="AccountMessageDelete">Eliminar</string>
+    <string name="AccountMessagePassword">Digite contraseña</string>
+    <string name="AccountMessageTitulos">Eliminar Cuenta</string>
+    <string name="Profile">Perfil</string>">
+    <string name="ProfileDelete">Eliminar Cuenta</string>">
+    <string name="ProfileUpdate">Editar Cuenta</string>">
+    <string name="map_title">Mapa Usuario</string>
 </resources>
 
 
